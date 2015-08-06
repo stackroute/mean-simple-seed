@@ -1,0 +1,11 @@
+<h3> Add a todo</h3>
+
+<form novalidate role="form">
+  <div class="form-group">
+    <label for="text">Todo Text:</label>
+    <input type="text" class="form-control" id="text" ng-model="todo.text">
+  </div>
+
+  <input type="submit" ng-click="save(todo)" value="Save" class="btn btn-default" />
+  <input type="button" ng-click="goHome()" value="Back to Listing" class="btn btn-default" />
+</form>

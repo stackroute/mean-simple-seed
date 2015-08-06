@@ -1,0 +1,12 @@
+<h3>Todos ... </h3>
+
+<table class="table table-bordered">
+  <tr ng-repeat="todo in todos">
+    <td> {{ todo.text }} </td>
+    <td><a href="/#/edit/{{ todo._id}}" class="btn btn-primary"> Edit </a></td>
+    <td><button ng-click="delete(todo)" class="btn btn-danger"> Delete </button></td>
+  </tr>
+</table>
+<div>
+  <a href="/#/addtodo" class="btn btn-primary">Add Todo</a>
+</div>

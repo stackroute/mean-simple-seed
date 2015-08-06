@@ -1,0 +1,12 @@
+{
+  "name"         : "PbLMS",
+  "version"      : "0.0.0",
+  "description"  : "A project based learning system",
+
+  "dependencies" : {
+    "angular"          : "latest",
+    "angular-resource" : "latest",
+    "angular-route"    : "latest",
+    "bootstrap" : "~3.3.5"
+  }
+}
