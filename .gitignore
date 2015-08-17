@@ -6,3 +6,6 @@ bower_components
 
 # All is coffeescript. So js folder is completely generated
 build
+
+npm-debug.log
+
