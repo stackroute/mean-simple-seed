@@ -4,8 +4,28 @@ gls            = require 'gulp-live-server'
 bower          = require 'gulp-bower'
 mainBowerFiles = require 'main-bower-files'
 mocha          = require 'gulp-mocha'
+env            = require 'gulp-env'
 
 
+
+# ************************ SERVER SIDE TASKS **********************************
+# Start the express server in development mode
+gulp.task 'server', ->
+  # set environment variables
+  env 
+    vars:
+      NODE_ENV: 'development'
+
+
+  server = gls.new 'server.js'
+  server.start()
+
+  # restart the sever on change of coffee-script files
+  gulp.watch ["server/**/*.coffee"], ->
+    server.start()
+
+
+# ************************** CLIENT SIDE TASKS *********************************
 # bower install
 gulp.task 'bower', ->
   bower()
@@ -18,17 +38,7 @@ gulp.task 'libs', ['bower'], ->
   (gulp.src './bower_components/bootstrap/dist/**')
     .pipe gulp.dest('./build/bootstrap/dist')
 
-# Start the express server in development mode
-gulp.task 'server', ->
-  server = gls.new 'server.js'
-  server.start()
 
-  # restart the sever on change of coffee-script files
-  gulp.watch ["server/**/*.coffee"], ->
-    server.start()
-
-
-# ************************** CLIENT SIDE TASKS *********************************
 # Compile client side coffee into js
 gulp.task 'client-coffee', ->
   (gulp.src "browser/coffee/**/*.coffee")
@@ -46,7 +56,7 @@ gulp.task 'watch-client', ['client-coffee', 'client-templates'],  ->
   gulp.watch ['browser/coffee/**/*.html'], ['client-templates']
 
 
-# test the application ---------------------------------------------------------
+# **************************** TESTING TASKS *********************************
 gulp.task 'test-models', ->
   gulp.src 'server/tests/models/**/*.coffee', {read: false}
     .pipe (mocha {reporter: 'spec'})

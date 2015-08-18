@@ -1,0 +1,13 @@
+{
+
+  "db": {
+    "dbURI" : "mongodb://localhost/seed",
+    "dbOpts": {}
+  },
+
+  "logging": {
+    "format" : "common",
+    "logDir" : "/var/log/node"
+  }
+}
+

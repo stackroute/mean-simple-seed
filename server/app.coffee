@@ -1,15 +1,15 @@
 express        = require 'express'
 mongoose       = require 'mongoose'
 bodyParser     = require 'body-parser'
-passport       = require 'passport'
 expressSession = require 'express-session'
-LocalStrategy  = (require 'passport-local').Strategy
+config         = require 'config'
+
 
 
 # create a app
 app        = express()
 
-# configure bodyParser into my app
+# configure bodyParser middleware for resquest processing
 app.use (bodyParser.urlencoded { extended: true })
 app.use bodyParser.json()
 
@@ -17,25 +17,22 @@ app.set 'views', (__dirname + '/views')
 app.set 'view engine', 'jade'
 
 
-# setup the mongo connection with mongoose
-mongoose.connect 'mongodb://localhost:27017/todo2'
+# Setup logging for this project
+# app.use (morgan (config.get "logging.format"))
+logging = (require './init/logging')(app)
 
-# Configure passport auth middleware
+# mongoose db connecction.
+mongoose.connect (config.get "db.dbURI", config.get "db.dbOpts")
+
+
+# Setup the session middleware express
 app.use expressSession
     secret: "Random string here"
     proxy: true
     resave: true
     saveUninitialized: true
 
-app.use passport.initialize()
-app.use passport.session()
-
-# Configure passport-local
-User = require './models/user'
-passport.use (new LocalStrategy User.authenticate())
-passport.serializeUser User.serializeUser()
-passport.deserializeUser User.deserializeUser()
-
+passport = (require './init/passport')(app)
 
 # Register routes
 homeCtrl = require './controllers/homeCtrl'
@@ -48,7 +45,7 @@ authCtrl = require './controllers/authCtrl'
 app.use '/', authCtrl
 
 # App static for development
-app.use '/static', (express.static (__dirname + '/../build'))
+app.use '/static', (express.static (__dirname + '/../build')) if process.env.NODE_ENV == 'development'
 
 app.listen 3000, ->
   console.log "Running server"
