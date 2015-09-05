@@ -12,7 +12,7 @@ env            = require 'gulp-env'
 # Start the express server in development mode
 gulp.task 'server', ->
   # set environment variables
-  env 
+  env
     vars:
       NODE_ENV: 'development'
 
@@ -58,7 +58,12 @@ gulp.task 'watch-client', ['client-coffee', 'client-templates'],  ->
 
 # **************************** TESTING TASKS *********************************
 gulp.task 'test-models', ->
-  gulp.src 'server/tests/models/**/*.coffee', {read: false}
+
+  env
+    vars:
+      NODE_ENV: 'testing'
+
+  gulp.src 'server/tests/**/*.coffee', {read: false}
     .pipe (mocha {reporter: 'spec'})
     .once 'error', ->
       process.exit 1

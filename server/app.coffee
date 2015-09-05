@@ -49,3 +49,6 @@ app.use '/static', (express.static (__dirname + '/../build')) if process.env.NOD
 
 app.listen 3000, ->
   console.log "Running server"
+
+
+module.exports = app

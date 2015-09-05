@@ -1,0 +1,6 @@
+{
+  "db": {
+    "dbURI" : "mongodb://localhost/test_seed",
+    "dbOpts": {}
+  }
+}

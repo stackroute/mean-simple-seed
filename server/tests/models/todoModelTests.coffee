@@ -1,4 +1,5 @@
-dbURI    = 'mongodb://localhost/todo-testing'
+config   = require 'config'
+dbURI    = config.get 'db.dbURI'
 should   = (require 'chai').should()
 mongoose = require 'mongoose'
 
@@ -8,13 +9,8 @@ Todo     = require('../../models/todo')
 
 describe "Tests for the Todo model", ->
 
+
   before (done) ->
-
-    # Make a new mongoose connection if not exists
-    done() if mongoose.connection.db?
-    mongoose.connect dbURI, done
-
-  before (done)->
     clearDB(done)
 
 
