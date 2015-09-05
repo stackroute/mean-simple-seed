@@ -59,7 +59,8 @@ gulp.task 'watch-client', ['client-coffee', 'client-templates'],  ->
 # **************************** TESTING TASKS *********************************
 gulp.task 'test-models', ->
 
-  env
+  # Set the system environment to testing
+  env 
     vars:
       NODE_ENV: 'testing'
 

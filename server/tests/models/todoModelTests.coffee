@@ -13,6 +13,7 @@ describe "Tests for the Todo model", ->
   before (done) ->
     clearDB(done)
 
+  
 
   it "can be saved", (done) ->
     todo = new Todo {text: "Blah"}

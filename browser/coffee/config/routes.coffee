@@ -1,5 +1,4 @@
-
-app = angular.module 'TodoApp'
+app = angular.module 'TodoApp' 
 
 
 # app.config ($routeProvider) ->
