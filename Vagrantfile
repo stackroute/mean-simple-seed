@@ -21,6 +21,10 @@ end
 
 Vagrant.configure(2) do |config|
 
+  config.vm.provider :virtualbox do |vb|
+    vb.customize ["modifyvm", :id, "--memory", "1024"]
+  end
+
   # base box
   config.vm.box = "ubuntu/vivid64"
 
@@ -30,10 +34,6 @@ Vagrant.configure(2) do |config|
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   config.vm.network "forwarded_port", guest: 4000, host: 4000
-
-  config.vm.provider "virtualbox" do |vb|
-    vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
-  end
 
   # configure our vm's with puppet
   config.vm.provision :puppet do |puppet|
