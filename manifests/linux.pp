@@ -15,6 +15,11 @@ class nodejs {
     require => Package['nodejs']
   }
 
+  # install mongodb
+  package { 'mongodb':
+    ensure  => installed
+  }
+
 }
 
 include nodejs

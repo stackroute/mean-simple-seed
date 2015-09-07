@@ -47,7 +47,7 @@ app.use '/', authCtrl
 # App static for development
 app.use '/static', (express.static (__dirname + '/../build')) if process.env.NODE_ENV == 'development'
 
-app.listen 3000, ->
+app.listen 4000, ->
   console.log "Running server"
 
 

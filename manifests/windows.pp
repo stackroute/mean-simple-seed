@@ -27,6 +27,11 @@ class nodejs {
       require  => File['/home/vagrant/node_modules']
   }
 
+  # install mongodb
+  package { 'mongodb':
+    ensure  => installed
+  }
+
 }
 
 include nodejs
