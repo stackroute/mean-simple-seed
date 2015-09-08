@@ -2,13 +2,14 @@ extends ../base.jade
 
 block content
 
-  h1 Login Page
+  h1 Login 
   
   form(method='post')
-  
-    input(type='text', name='username', placeholder='Enter your user name')
-    input(type='password', name='password', placeholder='Password')
-    button(type='submit') Submit
+    .form-group
+      input.form-control(type='text', name='username', placeholder='Enter your user name')
+    .form-group
+      input.form-control(type='password', name='password', placeholder='Password')
+    button.btn.btn-default(type='submit') Submit
     
     
     
