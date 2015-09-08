@@ -14,4 +14,15 @@ router.post '/register', (request, response) ->
     passport.authenticate('local') request, response, () ->
       response.redirect '/'
 
+
+router.get '/login', (request, response) ->
+  response.render 'auth/login', {}
+
+router.post '/login', passport.authenticate('local'), (req, resp) ->
+  resp.redirect '/'
+
+router.get '/logout', (req, res) ->
+  req.logout()
+  res.redirect '/login'
+
 module.exports = router

@@ -1,32 +1,26 @@
-doctype html
-html(lang="en")
+extends ./base.jade
 
-  head
-    title Welcome to MEAN
-    
-    link(href='/static/bootstrap/dist/css/bootstrap.min.css', rel='stylesheet')
-    
-    script(type="text/javascript" src="/static/js/libs/angular.js")
-    script(type="text/javascript" src="/static/js/libs/angular-resource.js")
-    script(type="text/javascript" src="/static/js/libs/angular-route.js")
+block pagecss
+  script(type="text/javascript" src="/static/js/libs/angular.js")
+  script(type="text/javascript" src="/static/js/libs/angular-resource.js")
+  script(type="text/javascript" src="/static/js/libs/angular-route.js")
 
-    script(type="text/javascript" src="/static/js/app.js")
-    script(type="text/javascript" src="/static/js/config/routes.js")
-    script(type="text/javascript" src="/static/js/services/todoService.js")
-    script(type="text/javascript" src="/static/js/controllers/todoCtrl.js")
-    script(type="text/javascript" src="/static/js/directives/displayTodo.js")
-    script(type="text/javascript" src="/static/js/directives/editTodo.js")    
+  script(type="text/javascript" src="/static/js/app.js")
+  script(type="text/javascript" src="/static/js/config/routes.js")
+  script(type="text/javascript" src="/static/js/services/todoService.js")
+  script(type="text/javascript" src="/static/js/controllers/todoCtrl.js")
+  script(type="text/javascript" src="/static/js/directives/displayTodo.js")
+  script(type="text/javascript" src="/static/js/directives/editTodo.js")    
     
 
-  body(ng-app="TodoApp")
-    div(class="container")
-      h1 Simple MEAN application
+block content
+  h1 Simple MEAN application
 
-      div(ng-controller="todoCtrl")
-        h3 Todos ....
-        table(class="table table-bordered")
-          tr(edit-todo)
-          tr(ng-repeat="todo in todos" display-todo)
+  div(ng-controller="todoCtrl")
+    h3 Todos ....
+    table(class="table table-bordered")
+      tr(edit-todo)
+      tr(ng-repeat="todo in todos" display-todo)
             
             
           

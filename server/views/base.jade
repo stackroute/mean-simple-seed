@@ -5,9 +5,30 @@ html(lang="en")
     title Welcome to MEAN
     
     link(href='/static/bootstrap/dist/css/bootstrap.min.css', rel='stylesheet')
-
-  body 
+    block pagecss
+    
+  body(ng-app="TodoApp")
+  
     div.container
+  
+      nav.navbar.navbar-default(role="navigation")
+        div.container-fluid
+          div.navbar-header
+            a.navbar-brand(href="#") StackRoute
+          div
+            ul.nav.navbar-nav 
+              li.active 
+                a(href="/") Home
+                
+            ul.nav.navbar-nav.navbar-right
+            
+              li
+                if typeof(user) == 'undefined'
+                  a(href="/login") Login
+                else
+                  a(href="/logout") Logout
+                  
+                  
       block content
       
       
