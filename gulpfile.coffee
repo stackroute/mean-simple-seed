@@ -21,8 +21,10 @@ gulp.task 'server', ->
   server.start()
 
   # restart the sever on change of coffee-script files
-  gulp.watch ["server/**/*.coffee"], ->
+  gulp.watch ["espress/**/*.coffee"], ['test-server'], ->
+    console.log "running express server"
     server.start()
+
 
 
 # ************************** CLIENT SIDE TASKS *********************************
@@ -41,38 +43,39 @@ gulp.task 'libs', ['bower'], ->
 
 # Compile client side coffee into js
 gulp.task 'client-coffee', ->
-  (gulp.src "browser/coffee/**/*.coffee")
+  (gulp.src "angular/coffee/**/*.coffee")
     .pipe(coffee {bare: true})
     .pipe (gulp.dest './build/js')
 
 # Copy html templates from the source folder to build folder
 gulp.task 'client-templates', ->
-  (gulp.src 'browser/coffee/**/*.html')
+  (gulp.src 'angular/coffee/**/*.html')
     .pipe (gulp.dest './build/js')
 
 # bring all the client tasks under watch
 gulp.task 'watch-client', ['client-coffee', 'client-templates'],  ->
-  gulp.watch ['browser/coffee/**/*.coffee'], ['client-coffee']
-  gulp.watch ['browser/coffee/**/*.html'], ['client-templates']
+  gulp.watch ['angular/coffee/**/*.coffee'], ['client-coffee']
+  gulp.watch ['anuglar/coffee/**/*.html'], ['client-templates']
 
 
 # **************************** TESTING TASKS *********************************
-gulp.task 'test-models', ->
+gulp.task 'test-server', ->
 
   # Set the system environment to testing
   env
     vars:
       NODE_ENV: 'testing'
 
-  gulp.src 'server/tests/**/*.coffee', {read: false}
+  gulp.src 'express/tests/**/*.coffee', {read: false}
     .pipe (mocha {reporter: 'spec'})
     .once 'error', ->
       process.exit 1
     .once 'end', ->
       process.exit()
 
+# for a one off test
+gulp.task 'test', ['test-server']
 
-gulp.task 'test', ['test-models']
 
 
 gulp.task 'default', ['client-coffee', 'server', 'watch-client']
