@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <title>A html page</title>
+    <script src="bower_components/angular/angular.js" charset="utf-8"></script>
+    <script src="my_app.js" charset="utf-8"></script>
+  </head>
+
+  <body>
+    <h1>hello world</h1>
+
+    <div ng-app="MyApp">
+      The sum is: {{ firstNumber + secondNumber | uppercase }} <br>
+      <input ng-model="firstNumber" /> + <input ng-model="secondNumber" />
+
+      <div ng-controller="Multiply">
+        M1 {{ m1 }} <br>
+        <button ng-click="aClick()">Click here</button>
+      </div>
+
+      <div question=q1 />
+    </div>
+  </body>
+
+</html>

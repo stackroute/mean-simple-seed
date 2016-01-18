@@ -10,3 +10,7 @@ build
 npm-debug.log
 
 .vagrant
+*~
+
+npm-debug*
+
